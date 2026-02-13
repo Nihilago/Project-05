@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>2005 Store | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="home-shell">
+    <!-- Top nav -->
+    <header class="home-nav">
+      <div class="brand">
+        <img src="/images/2005.png" alt="2005 brand mark" class="brand-mark brand-img" />
+        <div class="brand-text">
+          <span>avant-2k streetwear</span>
+        </div>
+      </div>
+      <nav class="home-nav-links">
+        <a href="index.html" class="is-active">Home</a>
+        <a href="catalog.html">Catalog</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <!-- Hero + right panel -->
+    <main class="home-main">
+      <!-- Left hero card -->
+      <section class="home-hero-card">
+        <div>
+          <div class="home-hero-tag">Online store / demo</div>
+          <h2 class="home-hero-title">New in "2005"</h2>
+          <p class="home-hero-sub">
+            A fictional label mixing Y2K chrome, platform soles and anime
+            prints with deconstructed, avantgarde streetwear silhouettes.
+            Browse the catalog and stress‑test the basket—no real checkout.
+          </p>
+          <div class="home-hero-actions">
+            <a href="catalog.html" class="btn-primary-store">
+              Shop the catalog
+            </a>
+            <a href="about.html" class="link-muted">
+              Read about the label
+            </a>
+          </div>
+        </div>
+
+        <div class="home-meta-row">
+          <span class="home-meta-pill">102 pieces in stock · demo</span>
+          <span class="home-meta-pill">Cart, sizes and filters are all wired up</span>
+        </div>
+      </section>
+
+      <!-- Right side panel -->
+      <aside class="home-side">
+        <div>
+          <div class="home-side-heading">Featured categories</div>
+
+          <div class="home-side-grid">
+            <div>
+              <div>Tops &amp; knits</div>
+              <div class="home-side-chip-row">
+                <span class="home-side-chip">Shirts</span>
+                <span class="home-side-chip">Sweaters</span>
+                <span class="home-side-chip">Jackets</span>
+              </div>
+            </div>
+
+            <div>
+              <div>Lower half</div>
+              <div class="home-side-chip-row">
+                <span class="home-side-chip">Pants</span>
+                <span class="home-side-chip">Shoes</span>
+              </div>
+            </div>
+
+            <div>
+              <div>Details</div>
+              <div class="home-side-chip-row">
+                <span class="home-side-chip">Accessories</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Taller vertical featured conveyor below categories -->
+          <div class="home-feature-wrapper">
+            <a href="catalog.html" class="home-feature-link">
+              <div class="home-feature-conveyor">
+                <div class="home-feature-track" id="home-feature-track">
+                  <!-- JS will inject repeated image strips here -->
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="home-side-footer">
+          <span>Explore the catalog to see all pieces</span>
+          <span class="home-side-counter" id="home-feature-counter">
+            /* conveyor only uses images now */
+          </span>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Home conveyor script -->
+  <script>
+    async function apiGet(url) {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("GET " + url + " failed " + res.status);
+      }
+      return await res.json();
+    }
+
+    async function initHomeFeaturedConveyor() {
+      const trackEl = document.getElementById("home-feature-track");
+      if (!trackEl) return;
+
+      try {
+        const data = await apiGet("/api/clothes");
+        const items = Array.isArray(data) ? data.slice(0, 20) : [];
+        if (!items.length) return;
+
+        function buildStrip() {
+          const strip = document.createElement("div");
+          strip.className = "home-feature-strip";
+          items.forEach((item) => {
+            if (!item || !item.afbeelding) return;
+            const img = document.createElement("img");
+            img.src = item.afbeelding;
+            img.alt = item.naam || "";
+            strip.appendChild(img);
+          });
+          return strip;
+        }
+
+        trackEl.innerHTML = "";
+        trackEl.appendChild(buildStrip());
+        trackEl.appendChild(buildStrip());
+      } catch (err) {
+        console.error("Home featured conveyor failed", err);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", initHomeFeaturedConveyor);
+  </script>
+</body>
+
+</html>ß

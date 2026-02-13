@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>"2005" — Catalog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="brand">
+      <img src="/images/2005.png" alt="2005 brand mark" class="brand-mark brand-img" />
+      <div class="brand-text">
+        <span>avant-2k streetwear</span>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <div class="category-row">
+        <nav class="category-bar" id="category-bar">
+          <button class="chip category-chip active" data-category="all">
+            <span class="chip-dot"></span>
+            All
+          </button>
+          <button class="chip category-chip" data-category="shirts">
+            <span class="chip-dot"></span>
+            Shirts
+          </button>
+          <button class="chip category-chip" data-category="sweaters">
+            <span class="chip-dot"></span>
+            Sweaters
+          </button>
+          <button class="chip category-chip" data-category="pants">
+            <span class="chip-dot"></span>
+            Pants
+          </button>
+          <button class="chip category-chip" data-category="shoes">
+            <span class="chip-dot"></span>
+            Shoes
+          </button>
+          <button class="chip category-chip" data-category="jackets">
+            <span class="chip-dot"></span>
+            Jackets
+          </button>
+          <button class="chip category-chip" data-category="dresses">
+            <span class="chip-dot"></span>
+            Dresses
+          </button>
+          <button class="chip category-chip" data-category="accessories">
+            <span class="chip-dot"></span>
+            Accessories
+          </button>
+        </nav>
+
+        <div class="gender-row" id="gender-filter">
+          <span class="gender-label">Gender</span>
+          <button class="chip gender-chip active" data-gender="all">
+            <span class="chip-dot"></span>
+            All
+          </button>
+          <button class="chip gender-chip" data-gender="men">
+            <span class="chip-dot"></span>
+            Men
+          </button>
+          <button class="chip gender-chip" data-gender="women">
+            <span class="chip-dot"></span>
+            Women
+          </button>
+          <button class="chip gender-chip" data-gender="unisex">
+            <span class="chip-dot"></span>
+            Unisex
+          </button>
+        </div>
+      </div>
+
+      <div class="catalog-header-right">
+
+        <div class="cart-toggle">
+          <button class="cart-toggle-button" id="cart-toggle-button">
+            CART
+            <span class="cart-toggle-button-badge" id="cart-count-badge">0</span>
+          </button>
+
+          <div class="cart-panel" id="cart-panel">
+            <div class="cart-panel-header">
+              <h2>Basket</h2>
+              <span id="cart-items-count-label">0 items</span>
+            </div>
+
+            <div id="cart-error" class="error-banner"></div>
+
+            <div id="cart-items" class="cart-items">
+              <!-- Cart items -->
+            </div>
+
+            <div class="cart-summary">
+              <div class="cart-summary-row">
+                <span>Subtotal</span>
+                <span>€ <span id="cart-subtotal">0.00</span></span>
+              </div>
+              <div class="cart-summary-row">
+                <span>Shipping</span>
+                <span>€ <span id="cart-shipping">0.00</span></span>
+              </div>
+              <div class="cart-summary-row total">
+                <span>Total</span>
+                <span>€ <span id="cart-total">0.00</span></span>
+              </div>
+              <div class="cart-summary-actions">
+                <button class="cart-order-button" type="button">
+                  Order
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel-main">
+      <div class="panel-main-header">
+        <h2>Pieces</h2>
+        <span id="product-count-label">Loading...</span>
+      </div>
+      <div id="catalogus-error" class="error-banner"></div>
+      <div id="catalogus-list" class="items-grid">
+        <!-- Products -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Product detail modal -->
+  <div class="product-modal-backdrop" id="product-modal">
+    <div class="product-modal">
+      <button class="product-modal-close" id="product-modal-close">×</button>
+      <div class="product-modal-inner">
+        <div class="product-modal-image-wrap">
+          <img id="modal-img" src="" alt="">
+          <div class="product-modal-tag" id="modal-tag"></div>
+        </div>
+        <div class="product-modal-body">
+          <div class="product-modal-header-row">
+            <h2 id="modal-name"></h2>
+            <p class="product-modal-brand" id="modal-brand"></p>
+          </div>
+          <p class="product-modal-price" id="modal-price"></p>
+          <div class="product-modal-meta-row">
+            <span id="modal-gender"></span>
+            <span id="modal-tags"></span>
+          </div>
+          <p class="product-modal-flavour-label">Flavour text</p>
+          <p class="product-modal-flavour" id="modal-flavour"></p>
+          <p class="product-modal-sizes-label">Available sizes</p>
+          <p class="product-modal-sizes" id="modal-sizes"></p>
+          <div class="product-modal-footer">
+            <button class="btn-primary-store" id="modal-add-to-cart" type="button">
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="/" class="header-back-btn">Back to home</a>
+
+  <footer class="about-ticker">
+    <div class="about-ticker-track">
+      <span class="about-ticker-text">
+        "2005" IS A FULLY FICTIONAL LABEL. ALL NAMES, BRANDING AND PRODUCT COMBINATIONS ON THIS SITE EXIST ONLY AS A
+        DEMO FOR A WEB DEVELOPMENT PROJECT. NOTHING HERE IS FOR SALE AND NO COMMERCIAL USE IS INTENDED. &nbsp; ⬤
+      </span>
+      <span class="about-ticker-text">
+        "2005" IS A FULLY FICTIONAL LABEL. ALL NAMES, BRANDING AND PRODUCT COMBINATIONS ON THIS SITE EXIST ONLY AS A
+        DEMO FOR A WEB DEVELOPMENT PROJECT. NOTHING HERE IS FOR SALE AND NO COMMERCIAL USE IS INTENDED. &nbsp; ⬤
+      </span>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+
+</html>

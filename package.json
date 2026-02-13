@@ -1,0 +1,20 @@
+{
+  "name": "modewinkel",
+  "version": "1.0.0",
+  "description": "Een minimale **Express.js** API voor een modewinkel, inclusief een eenvoudige **statische HTML-frontend**.",
+  "main": "catalogus.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
