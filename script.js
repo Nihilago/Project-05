@@ -101,6 +101,47 @@ function normalizeTags(tagField) {
   return [normalizeTagValue(tagField)];
 }
 
+// ---------- Conveyor display on Index page ----------
+    async function apiGet(url) {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("GET " + url + " failed " + res.status);
+      }
+      return await res.json();
+    }
+
+    async function initHomeFeaturedConveyor() {
+      const trackEl = document.getElementById("home-feature-track");
+      if (!trackEl) return;
+
+      try {
+        const data = await apiGet("/api/clothes");
+        const items = Array.isArray(data) ? data.slice(0, 20) : [];
+        if (!items.length) return;
+
+        function buildStrip() {
+          const strip = document.createElement("div");
+          strip.className = "home-feature-strip";
+          items.forEach((item) => {
+            if (!item || !item.afbeelding) return;
+            const img = document.createElement("img");
+            img.src = item.afbeelding;
+            img.alt = item.naam || "";
+            strip.appendChild(img);
+          });
+          return strip;
+        }
+
+        trackEl.innerHTML = "";
+        trackEl.appendChild(buildStrip());
+        trackEl.appendChild(buildStrip());
+      } catch (err) {
+        console.error("Home featured conveyor failed", err);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", initHomeFeaturedConveyor);
+
 // ---------- filtering ----------
 function getFilteredProducts() {
   return allProducts.filter((p) => {
@@ -504,47 +545,6 @@ if (modalAddBtnEl) {
     }
   });
 }
-
-// ---------- Conveyor display on home page ----------
-    async function apiGet(url) {
-      const res = await fetch(url);
-      if (!res.ok) {
-        throw new Error("GET " + url + " failed " + res.status);
-      }
-      return await res.json();
-    }
-
-    async function initHomeFeaturedConveyor() {
-      const trackEl = document.getElementById("home-feature-track");
-      if (!trackEl) return;
-
-      try {
-        const data = await apiGet("/api/clothes");
-        const items = Array.isArray(data) ? data.slice(0, 20) : [];
-        if (!items.length) return;
-
-        function buildStrip() {
-          const strip = document.createElement("div");
-          strip.className = "home-feature-strip";
-          items.forEach((item) => {
-            if (!item || !item.afbeelding) return;
-            const img = document.createElement("img");
-            img.src = item.afbeelding;
-            img.alt = item.naam || "";
-            strip.appendChild(img);
-          });
-          return strip;
-        }
-
-        trackEl.innerHTML = "";
-        trackEl.appendChild(buildStrip());
-        trackEl.appendChild(buildStrip());
-      } catch (err) {
-        console.error("Home featured conveyor failed", err);
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", initHomeFeaturedConveyor);
 
 // ---------- initial load ----------
 async function init() {
