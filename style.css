@@ -577,6 +577,13 @@ main {
   gap: 1.25rem;
 }
 
+@media (max-width: 700px) {
+  .items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+}
+
 .product-card {
   border-radius: 18px;
   background:
@@ -1025,6 +1032,13 @@ main {
   gap: 1.7rem;
 }
 
+@media (max-width: 600px) {
+  .home-hero-card {
+    padding: 1.4rem 1.3rem 1.4rem;
+    gap: 1.2rem;
+  }
+}
+
 .home-hero-tag {
   font-family: var(--mono-font);
   text-transform: uppercase;
@@ -1041,11 +1055,24 @@ main {
   margin: 0 0 0.5rem 0;
 }
 
+@media (max-width: 600px) {
+  .home-hero-title {
+    font-size: 1.6rem;
+    letter-spacing: 0.14em;
+  }
+}
+
 .home-hero-sub {
   font-size: 0.9rem;
   color: var(--text-muted);
   max-width: 32rem;
   margin-bottom: 1.3rem;
+}
+
+@media (max-width: 600px) {
+  .home-hero-sub {
+    font-size: 0.85rem;
+  }
 }
 
 .home-hero-actions {
@@ -1121,6 +1148,18 @@ main {
   flex-direction: column;
   justify-content: space-between;
   gap: 1.4rem;
+}
+
+@media (max-width: 900px) {
+  .home-side {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-side {
+    padding: 1.3rem 1.2rem;
+  }
 }
 
 .home-side-heading {
@@ -1206,6 +1245,7 @@ main {
   display: flex;
 }
 
+/* desktop conveyor size */
 .home-feature-strip img {
   width: 350px;
   height: 350px;
@@ -1217,10 +1257,18 @@ main {
   border: 1px solid rgba(248, 250, 252, 0.22);
 }
 
+/* responsive conveyor for tablets/phones */
+@media (max-width: 1024px) {
+  .home-feature-strip img {
+    width: 260px;
+    height: 260px;
+  }
+}
+
 @media (max-width: 700px) {
   .home-feature-strip img {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     margin: 0.35rem 0.3rem;
   }
 }
@@ -1504,5 +1552,6 @@ main {
   .header-back-btn {
     padding: 0.35rem 1.4rem;
     font-size: 0.72rem;
+    bottom: 56px; /* sit just above the about ticker on phones */
   }
 }
