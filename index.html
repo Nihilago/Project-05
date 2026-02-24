@@ -98,55 +98,12 @@
         <div class="home-side-footer">
           <span>Explore the catalog to see all pieces</span>
           <span class="home-side-counter" id="home-feature-counter">
-            /* conveyor only uses images now */
           </span>
         </div>
       </aside>
     </main>
   </div>
 
-  <!-- Home conveyor script -->
-  <script>
-    async function apiGet(url) {
-      const res = await fetch(url);
-      if (!res.ok) {
-        throw new Error("GET " + url + " failed " + res.status);
-      }
-      return await res.json();
-    }
-
-    async function initHomeFeaturedConveyor() {
-      const trackEl = document.getElementById("home-feature-track");
-      if (!trackEl) return;
-
-      try {
-        const data = await apiGet("/api/clothes");
-        const items = Array.isArray(data) ? data.slice(0, 20) : [];
-        if (!items.length) return;
-
-        function buildStrip() {
-          const strip = document.createElement("div");
-          strip.className = "home-feature-strip";
-          items.forEach((item) => {
-            if (!item || !item.afbeelding) return;
-            const img = document.createElement("img");
-            img.src = item.afbeelding;
-            img.alt = item.naam || "";
-            strip.appendChild(img);
-          });
-          return strip;
-        }
-
-        trackEl.innerHTML = "";
-        trackEl.appendChild(buildStrip());
-        trackEl.appendChild(buildStrip());
-      } catch (err) {
-        console.error("Home featured conveyor failed", err);
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", initHomeFeaturedConveyor);
-  </script>
 </body>
 
 </html>ß
